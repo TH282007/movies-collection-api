@@ -18,7 +18,11 @@ with app.app_context():
 @app.route('/api/movies',methods=['GET'])
 def get_movies():
     movies = Movie.query.all()
-    return jsonify ([{"id":movie.id,"title":movie.title,"genre":movie.genre} for movie in movies]) 
+    return jsonify ([{"id":movie.id,"title":movie.title,"genre":movie.genre} for movie in movies])
+
+@app.route('api/movies/<str:title', methods=['GET'])
+def search_movie(title):
+    return title
 
 @app.route('/api/movies/<int:id>', methods=['GET'])
 def get_movie(id):
